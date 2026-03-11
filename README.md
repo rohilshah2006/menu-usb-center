@@ -21,7 +21,10 @@ A clean, native macOS menu bar utility to monitor and manage your USB devices.
    **To fix this:**
    - **DO NOT** just double-click it.
    - **Right-Click** (or Control-Click) the app in your Applications folder and select **Open**.
-   - A different dialog will appear with an **Open** button. Click it. 
+   - **If Right-Click -> Open still doesn't work:**
+     - Open **System Settings** -> **Privacy & Security**.
+     - Scroll down and find the message stating "MenuUSBCenter was blocked..."
+     - Click **Open Anyway** and confirm with your password/Touch ID.
    - You only have to do this once!
 
 ## Canon Mode

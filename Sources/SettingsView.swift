@@ -20,145 +20,138 @@ struct SettingsView: View {
             
             Divider()
             
-            VStack(alignment: .leading, spacing: 20) {
-                // Audio Settings
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Audio Feedback").font(.subheadline).fontWeight(.semibold)
-                    
-                    HStack {
-                        Text("Play sound on connect/disconnect")
-                        Spacer()
-                        Toggle("", isOn: $playSound).labelsHidden()
-                            .toggleStyle(.switch)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Audio Settings
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Audio Feedback").font(.subheadline).fontWeight(.semibold)
+                        
+                        HStack {
+                            Text("Play sound on connect/disconnect")
+                            Spacer()
+                            Toggle("", isOn: $playSound).labelsHidden()
+                                .toggleStyle(.switch)
+                        }
+                        
+                        if playSound {
+                            HStack {
+                                Text("Sound Style")
+                                Spacer()
+                                Picker("", selection: $soundTypeRaw) {
+                                    ForEach(SoundManager.SoundType.allCases) { type in
+                                        Text(type.rawValue).tag(type.rawValue)
+                                    }
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+                                .frame(width: 200)
+                            }
+                        }
                     }
                     
-                    if playSound {
+                    Divider()
+                    
+                    // Notification Settings
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Notifications").font(.subheadline).fontWeight(.semibold)
+                        
                         HStack {
-                            Text("Sound Style")
+                            Text("Show Desktop Notifications")
                             Spacer()
-                            Picker("", selection: $soundTypeRaw) {
-                                ForEach(SoundManager.SoundType.allCases) { type in
-                                    Text(type.rawValue).tag(type.rawValue)
+                            Toggle("", isOn: $showNotifications).labelsHidden()
+                                .toggleStyle(.switch)
+                                .onChange(of: showNotifications) { enabled in
+                                    NotificationManager.shared.notificationsEnabled = enabled
+                                }
+                        }
+                        
+                        Button("Advanced OS Notification Settings...") {
+                            // Deep-link to macOS system preferences for notifications
+                            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.notifications") {
+                                NSWorkspace.shared.open(url)
+                            }
+                        }
+                        .font(.caption)
+                    }
+                    
+                    Divider()
+                    
+                    // General Settings
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("General").font(.subheadline).fontWeight(.semibold)
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Canon Mode (Bluetooth Style)")
+                                Text("Mimics macOS Bluetooth menu. Forces UI options below.")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Toggle("", isOn: $canonMode).labelsHidden()
+                                .toggleStyle(.switch)
+                        }
+                        
+                        Divider().padding(.vertical, 4)
+                        
+                        HStack {
+                            Text("Show Connected Device Count in Menu Bar")
+                            Spacer()
+                            Toggle("", isOn: $showDeviceCount).labelsHidden()
+                                .toggleStyle(.switch)
+                        }
+                        .disabled(canonMode)
+                        .opacity(canonMode ? 0.5 : 1.0)
+                        
+                        HStack {
+                            Text("Hide Disconnected Devices")
+                            Spacer()
+                            Toggle("", isOn: $hideDisconnected).labelsHidden()
+                                .toggleStyle(.switch)
+                        }
+                        .disabled(canonMode)
+                        .opacity(canonMode ? 0.5 : 1.0)
+                        
+                        HStack {
+                            Text("Hide Additional Device Info (Speed, Serial, etc.)")
+                            Spacer()
+                            Toggle("", isOn: $hideAdditionalStats).labelsHidden()
+                                .toggleStyle(.switch)
+                        }
+                        .disabled(canonMode)
+                        .opacity(canonMode ? 0.5 : 1.0)
+                        
+                        if #available(macOS 13.0, *) {
+                            LaunchAtLoginToggle()
+                        }
+                    }
+                    
+                    Divider()
+                    
+                    // Known Devices List
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Known Devices")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        
+                        Text("Tip: If the trash icon stays grey after disconnect or name appears incorrect, tap 'Edit' then 'Save' to refresh.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        if deviceManager.knownDevices.isEmpty {
+                            Text("No devices connected yet.")
+                                .foregroundColor(.secondary)
+                                .italic()
+                                .padding(.bottom, 20)
+                        } else {
+                            VStack(spacing: 8) {
+                                ForEach($deviceManager.knownDevices) { $device in
+                                    DeviceRowView(device: $device)
                                 }
                             }
-                            .pickerStyle(SegmentedPickerStyle())
-                            .frame(width: 200)
                         }
                     }
                 }
-                
-                Divider()
-                
-                // Notification Settings
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Notifications").font(.subheadline).fontWeight(.semibold)
-                    
-                    HStack {
-                        Text("Show Desktop Notifications")
-                        Spacer()
-                        Toggle("", isOn: $showNotifications).labelsHidden()
-                            .toggleStyle(.switch)
-                            .onChange(of: showNotifications) { enabled in
-                                NotificationManager.shared.notificationsEnabled = enabled
-                            }
-                    }
-                    
-                    Button("Advanced OS Notification Settings...") {
-                        // Deep-link to macOS system preferences for notifications
-                        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.notifications") {
-                            NSWorkspace.shared.open(url)
-                        }
-                    }
-                    .font(.caption)
-                }
-                
-                Divider()
-                
-                // General Settings
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("General").font(.subheadline).fontWeight(.semibold)
-                    
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Canon Mode (Bluetooth Style)")
-                            Text("Mimics macOS Bluetooth menu. Forces UI options below.")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                        Toggle("", isOn: $canonMode).labelsHidden()
-                            .toggleStyle(.switch)
-                    }
-                    
-                    Divider().padding(.vertical, 4)
-                    
-                    HStack {
-                        Text("Show Connected Device Count in Menu Bar")
-                        Spacer()
-                        Toggle("", isOn: $showDeviceCount).labelsHidden()
-                            .toggleStyle(.switch)
-                    }
-                    .disabled(canonMode)
-                    .opacity(canonMode ? 0.5 : 1.0)
-                    
-                    HStack {
-                        Text("Hide Disconnected Devices")
-                        Spacer()
-                        Toggle("", isOn: $hideDisconnected).labelsHidden()
-                            .toggleStyle(.switch)
-                    }
-                    .disabled(canonMode)
-                    .opacity(canonMode ? 0.5 : 1.0)
-                    
-                    HStack {
-                        Text("Hide Additional Device Info (Speed, Serial, etc.)")
-                        Spacer()
-                        Toggle("", isOn: $hideAdditionalStats).labelsHidden()
-                            .toggleStyle(.switch)
-                    }
-                    .disabled(canonMode)
-                    .opacity(canonMode ? 0.5 : 1.0)
-                    
-                    if #available(macOS 13.0, *) {
-                        LaunchAtLoginToggle()
-                    }
-                }
-            }
-            .padding(20)
-            
-            Divider()
-            
-            // Known Devices List
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Known Devices")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 20)
-                
-                Text("Tip: If the trash icon stays grey after disconnect or name appears incorrect, tap 'Edit' then 'Save' to refresh.")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 20)
-                
-                if deviceManager.knownDevices.isEmpty {
-                    Text("No devices connected yet.")
-                        .foregroundColor(.secondary)
-                        .italic()
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 20)
-                    Spacer()
-                } else {
-                    ScrollView {
-                        VStack(spacing: 8) {
-                            ForEach($deviceManager.knownDevices) { $device in
-                                DeviceRowView(device: $device)
-                            }
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 20)
-                    }
-                }
+                .padding(20)
             }
         }
     }

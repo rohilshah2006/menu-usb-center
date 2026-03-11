@@ -16,9 +16,13 @@ A clean, native macOS menu bar utility to monitor and manage your USB devices.
 1. Go to the [Releases](https://github.com/rohilshah2006/menu-usb-center/releases) page.
 2. Download the `MenuUSBCenter.zip` file.
 3. Unzip the file and move `MenuUSBCenter.app` to your `/Applications` folder.
-4. **Note**: Because this app is not signed with a paid Apple Developer certificate, the first time you open it, you may need to:
-   - Right-click (or Control-click) the app and select **Open**.
-   - Click **Open** in the dialog box that appears.
+4. **Important (Gatekeeper Warning)**: Since this app is not signed with a paid Apple Developer certificate, macOS will show a "cannot be opened because it is from an unidentified developer" or "malware" warning. This is normal for indie open-source apps. 
+   
+   **To fix this:**
+   - **DO NOT** just double-click it.
+   - **Right-Click** (or Control-Click) the app in your Applications folder and select **Open**.
+   - A different dialog will appear with an **Open** button. Click it. 
+   - You only have to do this once!
 
 ## Canon Mode
 Enable **Canon Mode** in the settings to transform the UI into a 1:1 replica of the macOS native system menus, featuring:

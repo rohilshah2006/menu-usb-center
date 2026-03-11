@@ -13,6 +13,7 @@ ioreg.txt
 ioreg_usb.txt
 *.json
 dump_*.swift
+dumpusb.swift
 test_*.swift
 test_*.py
 reset_defaults.swift

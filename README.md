@@ -14,13 +14,22 @@ A clean, native macOS menu bar utility to monitor and manage your USB devices.
 
 ## Screenshots
 
-| Canon Mode | Standard Mode | Settings |
-|:---:|:---:|:---:|
-| <img src="images/canon_mode.png" width="250" alt="Canon Mode Placeholder (replace src path)"> | <img src="images/standard_mode.png" width="250" alt="Standard Mode Placeholder (replace src path)"> | <img src="images/settings.png" width="250" alt="Settings Placeholder (replace src path)"> |
-
-| Device Count Badge | Nested USB Hubs |
+| Canon Mode | Standard Mode |
 |:---:|:---:|
-| <img src="images/device_count.png" width="250" alt="Device Count Placeholder (replace src path)"> | <img src="images/usb_hub.png" width="250" alt="USB Hubs Placeholder (replace src path)"> |
+| <img src="images/canon_mode.png" width="250" alt="Canon Mode"> | <img src="images/standard_mode.png" width="250" alt="Standard Mode"> |
+
+| Settings | Nested USB Hubs |
+|:---:|:---:|
+| <img src="images/settings.png" width="250" alt="Settings"> | <img src="images/usb_hub_image.png" width="250" alt="USB Hubs"> |
+
+| Edit Device | Optional Notifications |
+|:---:|:---:|
+| <img src="images/edit_usb_device.png" width="250" alt="Edit Device"> | <img src="images/optional_notifications.png" width="250" alt="Optional Notifications"> |
+
+## Recommended System Settings
+For the best experience, we recommend adjusting macOS's built-in notification settings for the app so that alerts properly stay on your screen. Go to **System Settings > Notifications > MenuUSBCenter** and match the configuration below:
+
+<img src="images/recommended_settings.png" width="400" alt="Recommended Notification Settings">
 
 ## Installation
 1. Go to the [Releases](https://github.com/rohilshah2006/menu-usb-center/releases) page.
@@ -49,5 +58,8 @@ To build the app from source:
 2. Run `./build.sh`.
 3. The app will be generated as `MenuUSBCenter.app`.
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ---
-Created with ♥ by Rohil
+Created by Rohil

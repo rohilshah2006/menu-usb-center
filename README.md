@@ -12,6 +12,16 @@ A clean, native macOS menu bar utility to monitor and manage your USB devices.
 - **Audio Feedback**: Classic connection and disconnection sounds.
 - **Lightweight**: Built with Swift and SwiftUI for maximum performance and native integration.
 
+## Screenshots
+
+| Canon Mode | Standard Mode | Settings |
+|:---:|:---:|:---:|
+| <img src="images/canon_mode.png" width="250" alt="Canon Mode Placeholder (replace src path)"> | <img src="images/standard_mode.png" width="250" alt="Standard Mode Placeholder (replace src path)"> | <img src="images/settings.png" width="250" alt="Settings Placeholder (replace src path)"> |
+
+| Device Count Badge | Nested USB Hubs |
+|:---:|:---:|
+| <img src="images/device_count.png" width="250" alt="Device Count Placeholder (replace src path)"> | <img src="images/usb_hub.png" width="250" alt="USB Hubs Placeholder (replace src path)"> |
+
 ## Installation
 1. Go to the [Releases](https://github.com/rohilshah2006/menu-usb-center/releases) page.
 2. Download the `MenuUSBCenter.zip` file.

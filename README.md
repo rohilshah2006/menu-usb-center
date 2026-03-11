@@ -4,6 +4,11 @@ A clean, native macOS menu bar utility to monitor and manage your USB devices.
 
 <img src="icon.png" width="128" alt="App Icon">
 
+![Swift](https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white)
+![SwiftUI](https://img.shields.io/badge/SwiftUI-007ACC?style=flat-square&logo=swift&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white)
+![IOKit](https://img.shields.io/badge/IOKit-444444?style=flat-square&logo=apple&logoColor=white)
+
 ## Features
 - **Real-time Monitoring**: Get notified instantly when USB devices are connected or disconnected.
 - **Canon Mode**: A high-fidelity mode that perfectly mimics the look and feel of the native macOS Bluetooth menu.

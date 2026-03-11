@@ -13,7 +13,7 @@ A clean, native macOS menu bar utility to monitor and manage your USB devices.
 - **Lightweight**: Built with Swift and SwiftUI for maximum performance and native integration.
 
 ## Installation
-1. Go to the [Releases](https://github.com/rohilshah/menu-usb-center/releases) page.
+1. Go to the [Releases](https://github.com/rohilshah2006/menu-usb-center/releases) page.
 2. Download the `MenuUSBCenter.zip` file.
 3. Unzip the file and move `MenuUSBCenter.app` to your `/Applications` folder.
 4. **Note**: Because this app is not signed with a paid Apple Developer certificate, the first time you open it, you may need to:

@@ -2,7 +2,7 @@
 
 A clean, native macOS menu bar utility to monitor and manage your USB devices.
 
-![App Icon](icon.png)
+<img src="icon.png" width="128" alt="App Icon">
 
 ## Features
 - **Real-time Monitoring**: Get notified instantly when USB devices are connected or disconnected.

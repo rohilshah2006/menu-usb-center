@@ -141,7 +141,7 @@ struct SettingsView: View {
                             Text("No devices connected yet.")
                                 .foregroundColor(.secondary)
                                 .italic()
-                                .padding(.bottom, 20)
+                                .padding(.bottom, 10)
                         } else {
                             VStack(spacing: 8) {
                                 ForEach($deviceManager.knownDevices) { $device in
@@ -149,6 +149,31 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                    }
+                    
+                    Divider()
+                    
+                    // Feedback & Support
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Feedback & Support")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        
+                        Text("Found a bug or have a feature request? Let us know on GitHub!")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        Button(action: {
+                            if let url = URL(string: "https://github.com/rohilshah2006/menu-usb-center/issues/new") {
+                                NSWorkspace.shared.open(url)
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "ladybug.fill")
+                                Text("Report an Issue")
+                            }
+                        }
+                        .padding(.top, 4)
                     }
                 }
                 .padding(20)

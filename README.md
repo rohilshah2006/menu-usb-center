@@ -1,0 +1,36 @@
+# Menu USB Center 
+
+A clean, native macOS menu bar utility to monitor and manage your USB devices.
+
+![App Icon](icon.png)
+
+## Features
+- **Real-time Monitoring**: Get notified instantly when USB devices are connected or disconnected.
+- **Canon Mode**: A high-fidelity mode that perfectly mimics the look and feel of the native macOS Bluetooth menu.
+- **Hub Hierarchy**: View nested USB hubs and their connected devices in a clear tree structure.
+- **Customization**: Rename your devices with custom aliases and choose between modern icons.
+- **Audio Feedback**: Classic connection and disconnection sounds.
+- **Lightweight**: Built with Swift and SwiftUI for maximum performance and native integration.
+
+## Installation
+1. Go to the [Releases](https://github.com/rohilshah/menu-usb-center/releases) page.
+2. Download the `MenuUSBCenter.zip` file.
+3. Unzip the file and move `MenuUSBCenter.app` to your `/Applications` folder.
+4. **Note**: Because this app is not signed with a paid Apple Developer certificate, the first time you open it, you may need to:
+   - Right-click (or Control-click) the app and select **Open**.
+   - Click **Open** in the dialog box that appears.
+
+## Canon Mode
+Enable **Canon Mode** in the settings to transform the UI into a 1:1 replica of the macOS native system menus, featuring:
+- Identical typography and spacing.
+- Native status indicators (blue for connected, grey for disconnected).
+- Streamlined device list.
+
+## Development
+To build the app from source:
+1. Clone the repository.
+2. Run `./build.sh`.
+3. The app will be generated as `MenuUSBCenter.app`.
+
+---
+Created with ♥ by Rohil
